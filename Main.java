@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        
+        ArrayList<PessoaFisica> contasPF = new ArrayList<PessoaFisica>();
+        ArrayList<PessoaJuridica> contasPJ = new ArrayList<PessoaJuridica>();
     }
 }
 
