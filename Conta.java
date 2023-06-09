@@ -1,24 +1,21 @@
 public abstract class Conta {
     //-----===ATRIBUTOS===-----//
-    protected int numeroConta;
+    protected String numeroConta;
     protected String nome;
+    protected String cpfCnpj;
     protected double saldo;
 
     //-----===CONSTRUTOR===-----//
-    public Conta(int numeroConta, String nome){
-        this.numeroConta = numeroConta;
-        this.nome = nome;
-    }
     public Conta(){}
     
-    //-----===Getters and Setters===-----//
-    public int getNumeroConta() {
+    //-----===GETTERS e SETTERS===-----//
+    public String getNumeroConta() {
         return numeroConta;
     }
-    public void setNumeroConta(int numeroConta) {
+    public void setNumeroConta(String numeroConta) {
         this.numeroConta = numeroConta;
     }
-
+    
     public String getNome() {
         return nome;
     }
@@ -26,6 +23,17 @@ public abstract class Conta {
         this.nome = nome;
     }
 
-    //-----===MÉTODOS===-----//
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
+    public String getCpfCnpj() {
+        return cpfCnpj;
+    }
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
+    }
 }

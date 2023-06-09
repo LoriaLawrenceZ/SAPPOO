@@ -1,11 +1,8 @@
 public class PessoaJuridica extends Conta{
-    private String cnpj;
-
-    public PessoaJuridica(String cnpj, String nome, int numeroConta){
-        this.cnpj = cnpj;
-        this.nome = nome;
+    public PessoaJuridica(String numeroConta, String nome, String cpfCnpj, double saldo){
         this.numeroConta = numeroConta;
+        this.nome = nome;
+        this.cpfCnpj = cpfCnpj;
+        this.saldo = saldo;
     }
-    
-    public PessoaJuridica(){}
 }
