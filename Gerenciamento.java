@@ -13,6 +13,8 @@ public class Gerenciamento {
 
     public Gerenciamento(){
         contas = new ArrayList<>();
+        PessoaJuridica contaOriginal = new PessoaJuridica("0", "Original", "123.456.789-12", 0);
+        contas.add(contaOriginal);
     }
 
     public void CriarConta(){
@@ -24,7 +26,7 @@ public class Gerenciamento {
         }
 
         if (escolha.equalsIgnoreCase("A")){
-            numeroConta = contas.get(contas.size() - 1).numeroConta + 1;
+            numeroConta = contas.get(contas.size() - 1).numeroConta + "1";
 
             System.out.println("------------------------------\nNome:");
             nome = sc.next();
@@ -33,7 +35,7 @@ public class Gerenciamento {
             cpfCnpj = sc.next();
 
             for (Conta conta : contas) {
-                while (cpfCnpj == conta.cpfCnpj) {
+                while (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println("-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CPF\nInsira um novo CPF");
                     cpfCnpj = sc.next();
                 }
@@ -53,7 +55,7 @@ public class Gerenciamento {
             cpfCnpj = sc.next();
 
             for (Conta conta : contas) {
-                while (cpfCnpj == conta.cpfCnpj) {
+                while (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println("-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CNPJ\nInsira um novo CNPJ");
                     cpfCnpj = sc.next();
                 }
@@ -70,17 +72,52 @@ public class Gerenciamento {
         System.out.println("-----------------------------------------------------------------\nInsira seu CPF/CNPJ ou Número da Conta");
         cpfCnpj = sc.next();
         
-        for(Conta conta : contas) {
-            if(cpfCnpj.equalsIgnoreCase(conta.getCpfCnpj())){
+        for (Conta conta : contas){
+            if(cpfCnpj.equals(conta.getCpfCnpj())) {
+                conta.get
                 AcessarConta();
-            }
-            else{
-                System.out.println("Conta não encontrada.");
             }
         }
     }
+
     public void AcessarConta(){
+        do {
+            System.out.println("\n----------------------------------------------------------------------\n[1] - Saldo | [2] - Saque | [3] - Depósito | [4] - Empréstimo | [S] - Sair da Conta");
+            escolha = sc.next().toLowerCase();
+    
+            switch(escolha){
+                case "1":
+                    ExibirSaldo();
+                    break;
+                case "2":
+                    FazerSaque();
+                    break;
+                case "3":
+                    FazerDeposito();
+                    break;
+                case "4":
+                    FazerEmprestimo();
+                    break;
+                case "s":
+                    System.out.println("-----===SAINDO DA CONTA===-----");
+                    escolha = "N";
+                    break;
+                default:
+                    System.out.println("Insira um valor válido da próxima vez");
+                    escolha = "";
+                    break;
+            }
+        } while (!escolha.equalsIgnoreCase("N"));
     }
+
+    public void ExibirSaldo(){
+    }
+
+    public void FazerSaque(){}
+
+    public void FazerDeposito(){}
+    
+    public void FazerEmprestimo(){}
     /*
     void exibirSaldo();
     void realizarSaque(double valor);
