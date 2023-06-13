@@ -33,7 +33,7 @@ public class Gerenciamento {
         }
 
         if (escolha.equalsIgnoreCase("A")) {
-            numeroConta = contas.get(contas.size() - 1).numeroConta + 1;
+            numeroConta = String.valueOf(Integer.parseInt(contas.get(contas.size() - 1).getNumeroConta()) + 1);
 
             System.out.println("------------------------------\nNome:");
             nome = sc.next();
@@ -61,7 +61,7 @@ public class Gerenciamento {
 
             System.out.println("Conta criada!\nNúmero da conta: " + conta.getNumeroConta());
         } else {
-            numeroConta = "" + (String.valueOf(contas.get(contas.size() - 1).numeroConta) + 1);
+            numeroConta = String.valueOf(Integer.parseInt(contas.get(contas.size() - 1).getNumeroConta()) + 1);
 
             System.out.println("------------------------------\nNome:");
             nome = sc.next();
