@@ -6,6 +6,7 @@ public class Gerenciamento {
     Scanner sc = new Scanner(System.in, "latin1");
 
     private List<Conta> contas;
+    private String login = "";
     private String escolha = "";
     private String numeroConta = "";
     private String nome = "";
@@ -32,83 +33,67 @@ public class Gerenciamento {
         }
 
         if (escolha.equalsIgnoreCase("A")) {
-            numeroConta = contas.get(contas.size() - 1).numeroConta + "1";
+            numeroConta = contas.get(contas.size() - 1).numeroConta + 1;
 
             System.out.println("------------------------------\nNome:");
             nome = sc.next();
 
             System.out.println("------------------------------\nCPF:         [xxxxxxxxxxx]");
             cpfCnpj = sc.next();
-            cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CPF");
+            while (cpfCnpj.length() != 11) {
+                System.out.println("Atente-se à escrita. O CPF é um documento de 11 números\nCPF:   [xxxxxxxxxxx]");
+                cpfCnpj = sc.next();
+            }
 
             for (Conta conta : contas) {
                 while (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println(
                             "-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CPF\nInsira um novo CPF");
                     cpfCnpj = sc.next();
-                    cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CPF");
                 }
             }
 
             PessoaFisica conta = new PessoaFisica(numeroConta, nome, cpfCnpj, 100);
 
             contas.add(conta);
+
+            System.out.println("Conta criada!\nNúmero da conta: " + conta.getNumeroConta());
         } else {
-            numeroConta = contas.get(contas.size() - 1).numeroConta + 1;
+            numeroConta = "" + (String.valueOf(contas.get(contas.size() - 1).numeroConta) + 1);
 
             System.out.println("------------------------------\nNome:");
             nome = sc.next();
 
             System.out.println("------------------------------\nCNPJ:       [xxxxxxxx0001xx]");
             cpfCnpj = sc.next();
-            cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CNPJ");
+            while (cpfCnpj.length() != 15) {
+                System.out.println("Atente-se à escrita. O CNPJ é um documento de 15 números\nCPF:  [xxxxxxxxx0001xx]");
+                cpfCnpj = sc.next();
+            }
 
             for (Conta conta : contas) {
                 while (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println(
                             "-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CNPJ\nInsira um novo CNPJ");
                     cpfCnpj = sc.next();
-                    cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CNPJ");
                 }
             }
 
             PessoaJuridica conta = new PessoaJuridica(numeroConta, nome, cpfCnpj, 100);
 
             contas.add(conta);
+
+            System.out.println("Conta criada!\nNúmero da conta: " + conta.getNumeroConta());
         }
     }
 
     public void Validacao() {
-        System.out.println(
-                "------------------------------------------------\n[A] - Pessoa Física | [B] - Pessoa Jurídica");
-        escolha = sc.next().toLowerCase();
+        System.out.println("-----------------------------------------------------------------\nInsira seu CPF/CNPJ ou Número da Conta");
+        login = sc.next();
 
-        while (!escolha.equalsIgnoreCase("A") & !escolha.equalsIgnoreCase("B")) {
-            System.out.println("\nInsira um valor válido\n[A] - Pessoa Física | [B] - Pessoa Jurídica");
-            escolha = sc.next().toLowerCase();
-        }
-
-        if (escolha.equalsIgnoreCase("A")) {
-            System.out.println(
-                    "-----------------------------------------------------------------\nInsira seu CPF ou Número da Conta");
-            cpfCnpj = sc.next();
-            cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CPF");
-
-            for (Conta conta : contas) {
-                if (cpfCnpj.equals(conta.getCpfCnpj())) {
-                    AcessarConta(conta);
-                }
-            }
-        } else {
-            System.out.println(
-                    "-----------------------------------------------------------------\nInsira seu CNPJ ou Número da Conta");
-            cpfCnpj = sc.next();
-            cpfCnpj = FormatarCpfCnpj(cpfCnpj, "CNPJ");
-
-            for (Conta conta : contas) {
-                if (cpfCnpj.equals(conta.getCpfCnpj())) {
-                    AcessarConta(conta);
-                }
+        for (Conta conta : contas) {
+            if (login.equals(conta.getCpfCnpj()) | login.equals(conta.getNumeroConta())) {
+                AcessarConta(conta);
             }
         }
     }
