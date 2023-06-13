@@ -46,10 +46,12 @@ public class Gerenciamento {
             }
 
             for (Conta conta : contas) {
-                while (cpfCnpj.equals(conta.cpfCnpj)) {
+                if (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println(
                             "-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CPF\nInsira um novo CPF");
                     cpfCnpj = sc.next();
+
+                    break;
                 }
             }
 
@@ -72,10 +74,12 @@ public class Gerenciamento {
             }
 
             for (Conta conta : contas) {
-                while (cpfCnpj.equals(conta.cpfCnpj)) {
+                if (cpfCnpj.equals(conta.cpfCnpj)) {
                     System.out.println(
                             "-----------------------------------------------------------------\nJá existe uma conta cadastrada nesse CNPJ\nInsira um novo CNPJ");
                     cpfCnpj = sc.next();
+
+                    break;
                 }
             }
 
